@@ -238,4 +238,12 @@ public class Main {
         }
         return cardsSelected;
     }
+
+    public void addDelay(int seconds){
+        try {
+            Thread.sleep(((int)seconds*1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
