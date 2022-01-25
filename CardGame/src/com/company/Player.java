@@ -49,11 +49,10 @@ public class Player {
         }
         if(indexOfCardToRemove == -1){
             System.out.println("Card to remove from player hand was not found!!");
-            System.out.println("Card to remove : " + cardToRemove.cardInfo());
+            System.out.println("Card to remove : " + cardToRemove.printCard());
         }
         else{
             hand[indexOfCardToRemove] = null;
-            System.out.println("Card was removed from hand successfully");
 
             Card[] newCardArray = new Card[numOfCardsInHand()];
             for (Card card : hand){
@@ -70,16 +69,6 @@ public class Player {
             for (int i = 0; i < newCardArray.length; i++) {
                 hand[i] = newCardArray[i];
             }
-
-//            for (int i = 0; i < hand.length; i++) {
-//                if(hand[i] != null) {
-//                    System.out.print(hand[i].printCard());
-//                }
-//                else {
-//                    System.out.print("|null|");
-//                }
-//            }
-//            System.out.println();
         }
     }
 
@@ -105,7 +94,10 @@ public class Player {
         System.out.println();
         System.out.println("_______________________________________");
         System.out.println();
-
+        if(stash.size() > 0){
+            System.out.println("Stash: " + checkTopCardInStash(stash).printCard() + "Amount: " + checkHowManyCardsInStash());
+        }
+        else System.out.println("");
     }
 
     public void selectCardFromHand(int position){

@@ -24,9 +24,9 @@ public class Card {
         return type;
     }
 
-    public String cardInfo(){
-        return "Card Num: " + num + ", Card Type: " + type;
-    }
+//    public String cardInfo(){
+//        return "Card Num: " + num + ", Card Type: " + type;
+//    }
 
     public String printCard(){
         String cardNumToPrint;

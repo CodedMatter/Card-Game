@@ -20,7 +20,7 @@ public class Table {
         }
         if(indexOfCardToRemove == -1){
             System.out.println("Card to remove from table was not found!!");
-            System.out.println("Card to remove : " + cardToRemove.cardInfo());
+            System.out.println("Card to remove : " + cardToRemove.printCard());
         }
         else{
             cardsOnTable.remove(indexOfCardToRemove);

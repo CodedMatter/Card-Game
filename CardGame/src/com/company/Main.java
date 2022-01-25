@@ -32,12 +32,8 @@ public class Main {
         while (!isGameEnded){
             program.printOutGame(table,player);
 
-            System.out.println("This is Turn " + turn);
-
             // ask player to choose what they want to do
             program.askPlayerToMakeChoice(table,player,input);
-
-            System.out.println("Turn " + turn + " has ended");
 
             turn++;
             if(turn > 4){
@@ -70,7 +66,14 @@ public class Main {
                 "\n(2) add cards together" +
                 "\n(3) put a card on table");
 
-        int response = Integer.parseInt(input.nextLine());
+
+
+        int response;
+        try {
+            response = Integer.parseInt(input.nextLine().trim());
+        }catch (Exception e){
+            response = -1;
+        }
 
         if(response != 1 && response != 2 && response != 3){
             System.out.println("You need to input a valid choice.");
@@ -82,7 +85,13 @@ public class Main {
         while (!isIndexValid){
             // ask player what card they want to select
             System.out.print("Select a Card from Hand you are trying to match (1-" + player.numOfCardsInHand() + ") :");
-            int selectedCardIndex = Integer.parseInt(input.nextLine());
+
+            int selectedCardIndex;
+            try {
+                selectedCardIndex = Integer.parseInt(input.nextLine().trim());
+            } catch (Exception e){
+                selectedCardIndex = 1000;
+            }
 
             if(selectedCardIndex > player.numOfCardsInHand()){
                 System.out.println("Need to enter a valid card position to continue.");
@@ -113,8 +122,12 @@ public class Main {
     public void choiceOne(int response, Table table, Player player, Scanner input) {
         boolean isIndexValid = false;
         while (!isIndexValid){
-            System.out.println("Select the card from the table (1-" + table.getCardsOnTable().size() + ")");
-            response = Integer.parseInt(input.nextLine());
+            System.out.print("Select the card from the table (1-" + table.getCardsOnTable().size() + ")");
+            try {
+                response = Integer.parseInt(input.nextLine().trim());
+            }catch (Exception e){
+                response = 1000;
+            }
 
             if(response > table.getCardsOnTable().size()){
                 System.out.println("Need to enter a valid card position to continue.");
