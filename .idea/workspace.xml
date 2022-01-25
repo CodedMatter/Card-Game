@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4615f5c7-7cce-43b3-816c-1d38d7025ab7" name="Changes" comment="Added try-catch for inputs" />
+    <list default="true" id="4615f5c7-7cce-43b3-816c-1d38d7025ab7" name="Changes" comment="Removed unwanted files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +40,9 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
@@ -73,6 +76,7 @@
       <workItem from="1643078486677" duration="499000" />
       <workItem from="1643079009023" duration="382000" />
       <workItem from="1643085170248" duration="6827000" />
+      <workItem from="1643095109183" duration="1301000" />
     </task>
     <task id="LOCAL-00001" summary="Added try-catch for inputs">
       <created>1643093777317</created>
@@ -81,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643093777317</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Removed unwanted files">
+      <created>1643095214993</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1643095214993</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +112,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added try-catch for inputs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added try-catch for inputs" />
+    <MESSAGE value="Removed unwanted files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unwanted files" />
   </component>
 </project>
