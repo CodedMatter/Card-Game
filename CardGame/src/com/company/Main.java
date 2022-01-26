@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -10,8 +12,25 @@ public class Main {
         Main program = new Main();
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Card Game!");
+
+        //Ask how many players
+        // for now default to 2
+        int numOfPlayers = 2;
+
         System.out.print("Enter players name: ");
         Player player = new Player(input.nextLine());
+
+        // add player and create the necessary npcs to playerOrder
+        NPCNameLibrary npcNameLibrary = new NPCNameLibrary();
+        List<Player> playerOrder = new ArrayList<>();
+        playerOrder.add(player);
+
+        for (int i = 0; i < numOfPlayers-1; i++) {
+            NPC npc = new NPC(npcNameLibrary.getRandomName());
+            playerOrder.add(npc);
+            System.out.println("Ran " + i + " times" );
+        }
+
         Deck deck = new Deck();
         Table table = new Table();
         boolean isGameEnded = false;
@@ -19,23 +38,51 @@ public class Main {
         // shuffle the deck
         deck.shuffleDeck();
 
-        // add card to player and table
+        // add card to each player and table
         for (Card card : deck.drawThisManyCards(4)){
             table.addCardToTable(card);
         }
-        player.setPlayerHand(deck.drawThisManyCards(4));
+
+        for (Player p : playerOrder){
+            p.setPlayerHand(deck.drawThisManyCards(4));
+            System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
+            System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
+        }
+
 
         // Begin the game
         int turn = 1;
 
-
+        // game loop
         while (!isGameEnded){
-            program.printOutGame(table,player);
 
-            // ask player to choose what they want to do
-            program.askPlayerToMakeChoice(table,player,input);
+            System.out.println("Turn " + turn + " has stared");
+            int indexOfCurrentPlayerTurn = 0;
+
+            while (indexOfCurrentPlayerTurn < playerOrder.size()){
+
+                if(playerOrder.get(indexOfCurrentPlayerTurn) instanceof NPC){
+                    System.out.println("Its NPCs Turn");
+                    System.out.println(playerOrder.get(indexOfCurrentPlayerTurn).getName() + " is thinking ...");
+                    program.addDelay(1);
+                    ((NPC) playerOrder.get(indexOfCurrentPlayerTurn)).npcTurn(program,table);
+                    // if npc has a card that matches select choice one
+                    // else see if they can add up to a card in there hand select choice 2
+                    // else put the lowest card down on table
+                }
+                else{
+                    program.printOutGame(table,player);
+
+                    // ask player to choose what they want to do
+                    program.askPlayerToMakeChoice(table,player,input);
+                }
+                indexOfCurrentPlayerTurn++;
+            }
+
+
 
             turn++;
+            System.out.println("Turn " + turn + " has ended");
             if(turn > 4){
                 if(deck.amountOfCardsInDeck() == 0){
                     isGameEnded = true;
@@ -43,7 +90,11 @@ public class Main {
                     System.out.println("Player had a stack of " + player.checkHowManyCardsInStash());
                 }
                 else {
-                    player.setPlayerHand(deck.drawThisManyCards(4));
+                    for (Player p : playerOrder){
+                        p.setPlayerHand(deck.drawThisManyCards(4));
+                        System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
+                        System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
+                    }
                     turn = 1;
                     isGameEnded=false;
                     System.out.println("Next turn is " + turn);

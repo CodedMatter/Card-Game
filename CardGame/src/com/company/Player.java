@@ -13,6 +13,14 @@ public class Player {
         playerName = name;
     }
 
+    public Card[] getHand() {
+        return hand;
+    }
+
+    public Card getCardSelected() {
+        return cardSelected;
+    }
+
     public String getName(){
         return playerName;
     }
