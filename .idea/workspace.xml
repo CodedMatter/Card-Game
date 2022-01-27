@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4615f5c7-7cce-43b3-816c-1d38d7025ab7" name="Changes" comment="Updating project settings">
-      <change afterPath="$PROJECT_DIR$/CardGame/src/com/company/NPC.java" afterDir="false" />
+    <list default="true" id="4615f5c7-7cce-43b3-816c-1d38d7025ab7" name="Changes" comment="Added method that allows for a delay in program">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestFolder/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestFolder/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestFolder/com/company/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestFolder/com/company/Player.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +95,8 @@
       <workItem from="1643079009023" duration="382000" />
       <workItem from="1643085170248" duration="6827000" />
       <workItem from="1643095109183" duration="1898000" />
-      <workItem from="1643125187989" duration="2492000" />
+      <workItem from="1643125187989" duration="2915000" />
+      <workItem from="1643209202255" duration="19717000" />
     </task>
     <task id="LOCAL-00001" summary="Added try-catch for inputs">
       <created>1643093777317</created>
@@ -116,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643096481287</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added method that allows for a delay in program">
+      <created>1643136093752</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1643136093752</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +137,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -138,6 +160,7 @@
     <MESSAGE value="Added try-catch for inputs" />
     <MESSAGE value="Removed unwanted files" />
     <MESSAGE value="Updating project settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating project settings" />
+    <MESSAGE value="Added method that allows for a delay in program" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added method that allows for a delay in program" />
   </component>
 </project>

@@ -35,19 +35,21 @@ public class NPC extends Player{
             System.out.println(getName() + " selected " + cardSelected.printCard() +
                     "from hand and " + cardSelectedFromTable.printCard() +
                     "from Table");
+            program.addDelay(2);
             addCardToStash(cardSelected);
             addCardToStash(cardSelectedFromTable);
             table.removeCardFromTable(cardSelectedFromTable);
             removeCardFromHand(cardSelected);
 
-            printHand();
+            //printHand();
         }else
         {
             // try adding cards together
+
             //else put card down
             System.out.println("NPC did not find a match in hand and table");
             System.out.println("Thinking of what card to place..");
-            program.addDelay(1);
+            program.addDelay(2);
 
             Card smallestNumCard = null;
             for (Card card : getHand()){
@@ -64,7 +66,7 @@ public class NPC extends Player{
             System.out.println("Selected to place" + smallestNumCard.printCard() + "on table");
             table.addCardToTable(smallestNumCard);
             removeCardFromHand(smallestNumCard);
-            printHand();
+            //printHand();
         }
     }
 }

@@ -28,7 +28,6 @@ public class Main {
         for (int i = 0; i < numOfPlayers-1; i++) {
             NPC npc = new NPC(npcNameLibrary.getRandomName());
             playerOrder.add(npc);
-            System.out.println("Ran " + i + " times" );
         }
 
         Deck deck = new Deck();
@@ -45,13 +44,67 @@ public class Main {
 
         for (Player p : playerOrder){
             p.setPlayerHand(deck.drawThisManyCards(4));
-            System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
-            System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
+            //System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
+            //System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
         }
 
 
         // Begin the game
         int turn = 1;
+
+        System.out.println("========================================");
+//        // try adding cards together
+//        boolean canCardsCanBeAdded = false;
+//        Card[] cardsToBeAdded = new Card[0];
+//
+//        for (Card cardInHand : player.getHand()) {
+//            System.out.println("Card to match: " + cardInHand.printCard());
+//            int sum = 0;
+//            ///////////////////////////////////////////////////
+//
+//            int count = 2;
+//            while(count < table.getCardsOnTable().size()){
+//                for (int i = 0; i < table.getCardsOnTable().size(); i++) {
+//                    System.out.println();
+//                    for (int j = 0; j < count; j++) {
+//                        cardsToBeAdded = new Card[count];
+//                        if(i+j<=table.getCardsOnTable().size()){
+//                            sum += table.getCardsOnTable().get(i+j).getCardNumber();
+//                            cardsToBeAdded[j] = table.getCardsOnTable().get(i+j);
+//                            System.out.print(table.getCardsOnTable().get(i+j).printCard());
+//                        }
+//                    }
+//                    System.out.println("sum is: " + sum);
+//                    if(sum == cardInHand.getCardNumber()){
+//                        canCardsCanBeAdded = true;
+//                        System.out.println("Found cards that add up to selected card");
+//                        break;
+//                    }
+//                    else {
+//                        sum=0;
+//                    }
+//
+//                }
+//                if(canCardsCanBeAdded){
+//                    System.out.println(cardsToBeAdded.length);
+//                    for (Card card : cardsToBeAdded){
+//                        System.out.print(card.printCard());
+//                    }
+//                    break;
+//                }
+//                count++;
+//            }
+//            System.out.println("canCardsCanBeAdded: " + canCardsCanBeAdded);
+//
+//            ///////////////////////////////////////////////////
+//
+//            // add all the cards together
+//            // add all variation of three cards
+//            // add all variation of two cards
+//        }
+
+        //program.checkWhatCardsInTableSumUpToo(table,player);
+        System.out.println("========================================");
 
         // game loop
         while (!isGameEnded){
@@ -64,7 +117,7 @@ public class Main {
                 if(playerOrder.get(indexOfCurrentPlayerTurn) instanceof NPC){
                     System.out.println("Its NPCs Turn");
                     System.out.println(playerOrder.get(indexOfCurrentPlayerTurn).getName() + " is thinking ...");
-                    program.addDelay(1);
+                    program.addDelay(2);
                     ((NPC) playerOrder.get(indexOfCurrentPlayerTurn)).npcTurn(program,table);
                     // if npc has a card that matches select choice one
                     // else see if they can add up to a card in there hand select choice 2
@@ -79,10 +132,9 @@ public class Main {
                 indexOfCurrentPlayerTurn++;
             }
 
-
-
-            turn++;
             System.out.println("Turn " + turn + " has ended");
+            turn++;
+
             if(turn > 4){
                 if(deck.amountOfCardsInDeck() == 0){
                     isGameEnded = true;
@@ -92,14 +144,41 @@ public class Main {
                 else {
                     for (Player p : playerOrder){
                         p.setPlayerHand(deck.drawThisManyCards(4));
-                        System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
-                        System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
+                        //System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
+                        //System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
                     }
                     turn = 1;
                     isGameEnded=false;
                     System.out.println("Next turn is " + turn);
                 }
                 System.out.println("Cards left in deck: " + deck.amountOfCardsInDeck());
+            }
+        }
+    }
+
+    public void checkWhatCardsInTableSumUpToo(Table table, Player player){
+        for (Card cardSelectedFromHand : player.getHand()) {
+
+            System.out.println("Card trying to match is: " + cardSelectedFromHand.printCard());
+
+            for (int i = 0; i < table.getCardsOnTable().size(); i++) {
+
+                int sum = 0;
+
+                for (int j = i + 1; j < table.getCardsOnTable().size(); j++) {
+
+                    System.out.print(table.getCardsOnTable().get(i).printCard() + "+");
+                    System.out.print(table.getCardsOnTable().get(j).printCard() + ":");
+
+                    sum += table.getCardsOnTable().get(i).getCardNumber()
+                            + table.getCardsOnTable().get(j).getCardNumber();
+
+                    System.out.println(sum);
+
+                    if (sum == cardSelectedFromHand.getCardNumber()) {
+                        System.out.println("cards add up to selected card");
+                    }
+                }
             }
         }
     }
@@ -191,12 +270,12 @@ public class Main {
         }
 
         Card cardOnTable = table.getCardsOnTable().get(response - 1);
-        System.out.println("Card on table selected: " + cardOnTable.printCard());
-        System.out.println("Number of card in hand is: " + player.cardSelected.getCardNumber());
-        System.out.println("Number of card selected on table is: " + cardOnTable.getCardNumber());
+        //System.out.println("Card on table selected: " + cardOnTable.printCard());
+        //System.out.println("Number of card in hand is: " + player.cardSelected.getCardNumber());
+        //System.out.println("Number of card selected on table is: " + cardOnTable.getCardNumber());
 
         if(player.cardSelected.getCardNumber() == cardOnTable.getCardNumber()){
-            System.out.println("There numbers match!!");
+            //System.out.println("There numbers match!!");
             player.addCardToStash(cardOnTable);
             player.addCardToStash(player.cardSelected);
             System.out.println("Number of cards in stash: " + player.stash.size());
@@ -244,7 +323,7 @@ public class Main {
         }
 
         if(sumOfCards == player.cardSelected.getCardNumber() || player.cardSelected.getCardNumber() == 1 && sumOfCards == 14){
-            System.out.println("Cards selected from table sum up to your card!!!! ");
+            //System.out.println("Cards selected from table sum up to your card!!!! ");
             Card[] cardsSelectedOnTable = getCardsOnTableByIndexes(responseInArray,table);
             for (Card card : cardsSelectedOnTable){
                 player.addCardToStash(card);
