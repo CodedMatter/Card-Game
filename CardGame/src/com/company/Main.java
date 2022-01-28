@@ -54,54 +54,17 @@ public class Main {
 
         System.out.println("========================================");
 //        // try adding cards together
-//        boolean canCardsCanBeAdded = false;
-//        Card[] cardsToBeAdded = new Card[0];
-//
-//        for (Card cardInHand : player.getHand()) {
-//            System.out.println("Card to match: " + cardInHand.printCard());
-//            int sum = 0;
-//            ///////////////////////////////////////////////////
-//
-//            int count = 2;
-//            while(count < table.getCardsOnTable().size()){
-//                for (int i = 0; i < table.getCardsOnTable().size(); i++) {
-//                    System.out.println();
-//                    for (int j = 0; j < count; j++) {
-//                        cardsToBeAdded = new Card[count];
-//                        if(i+j<=table.getCardsOnTable().size()){
-//                            sum += table.getCardsOnTable().get(i+j).getCardNumber();
-//                            cardsToBeAdded[j] = table.getCardsOnTable().get(i+j);
-//                            System.out.print(table.getCardsOnTable().get(i+j).printCard());
-//                        }
-//                    }
-//                    System.out.println("sum is: " + sum);
-//                    if(sum == cardInHand.getCardNumber()){
-//                        canCardsCanBeAdded = true;
-//                        System.out.println("Found cards that add up to selected card");
-//                        break;
-//                    }
-//                    else {
-//                        sum=0;
-//                    }
-//
-//                }
-//                if(canCardsCanBeAdded){
-//                    System.out.println(cardsToBeAdded.length);
-//                    for (Card card : cardsToBeAdded){
-//                        System.out.print(card.printCard());
-//                    }
-//                    break;
-//                }
-//                count++;
-//            }
-//            System.out.println("canCardsCanBeAdded: " + canCardsCanBeAdded);
-//
-//            ///////////////////////////////////////////////////
-//
-//            // add all the cards together
-//            // add all variation of three cards
-//            // add all variation of two cards
-//        }
+
+        // copy the table list to a new list to cycle through
+        // while the new table list is greater than 0
+        // create a list to store cards to count
+        // add the first card to the stored card list
+        // sum up each individual card on table to the sum of the card in stored list
+        // when all cards are cycled through add the next card on the table to the stored card list
+        // add each individual card on table to the sum of cards in stored card list
+        // repeat till all cards are added to stored card list
+        // then place all cards back into the new table list and remove the first card.
+        // repeat until there are no more cards on the table list
 
         //program.checkWhatCardsInTableSumUpToo(table,player);
         System.out.println("========================================");
