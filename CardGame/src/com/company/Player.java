@@ -112,9 +112,4 @@ public class Player {
         cardSelected = hand[position-1];
         System.out.println(playerName + " has selected " + cardSelected.printCard() + " from hand");
     }
-
-    public void deselectCard(){
-        cardSelected = null;
-    }
-
 }

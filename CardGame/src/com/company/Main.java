@@ -52,23 +52,6 @@ public class Main {
         // Begin the game
         int turn = 1;
 
-        System.out.println("========================================");
-//        // try adding cards together
-
-        // copy the table list to a new list to cycle through
-        // while the new table list is greater than 0
-        // create a list to store cards to count
-        // add the first card to the stored card list
-        // sum up each individual card on table to the sum of the card in stored list
-        // when all cards are cycled through add the next card on the table to the stored card list
-        // add each individual card on table to the sum of cards in stored card list
-        // repeat till all cards are added to stored card list
-        // then place all cards back into the new table list and remove the first card.
-        // repeat until there are no more cards on the table list
-
-        //program.checkWhatCardsInTableSumUpToo(table,player);
-        System.out.println("========================================");
-
         // game loop
         while (!isGameEnded){
 
@@ -115,33 +98,6 @@ public class Main {
                     System.out.println("Next turn is " + turn);
                 }
                 System.out.println("Cards left in deck: " + deck.amountOfCardsInDeck());
-            }
-        }
-    }
-
-    public void checkWhatCardsInTableSumUpToo(Table table, Player player){
-        for (Card cardSelectedFromHand : player.getHand()) {
-
-            System.out.println("Card trying to match is: " + cardSelectedFromHand.printCard());
-
-            for (int i = 0; i < table.getCardsOnTable().size(); i++) {
-
-                int sum = 0;
-
-                for (int j = i + 1; j < table.getCardsOnTable().size(); j++) {
-
-                    System.out.print(table.getCardsOnTable().get(i).printCard() + "+");
-                    System.out.print(table.getCardsOnTable().get(j).printCard() + ":");
-
-                    sum += table.getCardsOnTable().get(i).getCardNumber()
-                            + table.getCardsOnTable().get(j).getCardNumber();
-
-                    System.out.println(sum);
-
-                    if (sum == cardSelectedFromHand.getCardNumber()) {
-                        System.out.println("cards add up to selected card");
-                    }
-                }
             }
         }
     }
