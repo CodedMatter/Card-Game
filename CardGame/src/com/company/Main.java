@@ -44,10 +44,7 @@ public class Main {
 
         for (Player p : playerOrder){
             p.setPlayerHand(deck.drawThisManyCards(4));
-            //System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
-            //System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
         }
-
 
         // Begin the game
         int turn = 1;
@@ -55,7 +52,6 @@ public class Main {
         // game loop
         while (!isGameEnded){
 
-            System.out.println("Turn " + turn + " has stared");
             int indexOfCurrentPlayerTurn = 0;
 
             while (indexOfCurrentPlayerTurn < playerOrder.size()){
@@ -65,9 +61,6 @@ public class Main {
                     System.out.println(playerOrder.get(indexOfCurrentPlayerTurn).getName() + " is thinking ...");
                     program.addDelay(2);
                     ((NPC) playerOrder.get(indexOfCurrentPlayerTurn)).npcTurn(program,table);
-                    // if npc has a card that matches select choice one
-                    // else see if they can add up to a card in there hand select choice 2
-                    // else put the lowest card down on table
                 }
                 else{
                     program.printOutGame(table,player);
@@ -78,24 +71,21 @@ public class Main {
                 indexOfCurrentPlayerTurn++;
             }
 
-            System.out.println("Turn " + turn + " has ended");
             turn++;
 
             if(turn > 4){
                 if(deck.amountOfCardsInDeck() == 0){
                     isGameEnded = true;
                     System.out.println("Game has ended!!");
-                    System.out.println("Player had a stack of " + player.checkHowManyCardsInStash());
+                    System.out.println("The Player that won was " + program.checkWhichPlayerWon(playerOrder).getName());
+                    System.out.println("They had a stack of " + program.checkWhichPlayerWon(playerOrder).stash.size() + " cards");
                 }
                 else {
                     for (Player p : playerOrder){
                         p.setPlayerHand(deck.drawThisManyCards(4));
-                        //System.out.println(p.getName() + " received " + p.numOfCardsInHand() + " cards");
-                        //System.out.println("Cards in Deck left: " + deck.amountOfCardsInDeck());
                     }
                     turn = 1;
                     isGameEnded=false;
-                    System.out.println("Next turn is " + turn);
                 }
                 System.out.println("Cards left in deck: " + deck.amountOfCardsInDeck());
             }
@@ -115,8 +105,6 @@ public class Main {
                 "\n(2) add cards together" +
                 "\n(3) put a card on table");
 
-
-
         int response;
         try {
             response = Integer.parseInt(input.nextLine().trim());
@@ -125,7 +113,7 @@ public class Main {
         }
 
         if(response != 1 && response != 2 && response != 3){
-            System.out.println("You need to input a valid choice.");
+            System.out.println("You need to input a valid choice. ");
             askPlayerToMakeChoice(table,player,input);
             return;
         }
@@ -133,7 +121,7 @@ public class Main {
         boolean isIndexValid = false;
         while (!isIndexValid){
             // ask player what card they want to select
-            System.out.print("Select a Card from Hand you are trying to match (1-" + player.numOfCardsInHand() + ") :");
+            System.out.print("Select a Card from Hand you are trying to match (1-" + player.numOfCardsInHand() + "): ");
 
             int selectedCardIndex;
             try {
@@ -143,7 +131,7 @@ public class Main {
             }
 
             if(selectedCardIndex > player.numOfCardsInHand()){
-                System.out.println("Need to enter a valid card position to continue.");
+                System.out.println("Need to enter a valid card position to continue. ");
                 isIndexValid = false;
             }
             else {
@@ -163,7 +151,7 @@ public class Main {
                 choiceThree(table,player);
                 break;
             default:
-                System.out.println("Wrong Choice Made It Through!!!! Check Code :O :(");
+                System.out.println("Wrong Choice Made It Through!!!! Check Code :O :( ");
                 break;
         }
     }
@@ -171,7 +159,7 @@ public class Main {
     public void choiceOne(int response, Table table, Player player, Scanner input) {
         boolean isIndexValid = false;
         while (!isIndexValid){
-            System.out.print("Select the card from the table (1-" + table.getCardsOnTable().size() + ")");
+            System.out.print("Select the card from the table (1-" + table.getCardsOnTable().size() + ") ");
             try {
                 response = Integer.parseInt(input.nextLine().trim());
             }catch (Exception e){
@@ -179,7 +167,7 @@ public class Main {
             }
 
             if(response > table.getCardsOnTable().size()){
-                System.out.println("Need to enter a valid card position to continue.");
+                System.out.println("Need to enter a valid card position to continue. ");
                 isIndexValid = false;
             }
             else {
@@ -189,16 +177,10 @@ public class Main {
         }
 
         Card cardOnTable = table.getCardsOnTable().get(response - 1);
-        //System.out.println("Card on table selected: " + cardOnTable.printCard());
-        //System.out.println("Number of card in hand is: " + player.cardSelected.getCardNumber());
-        //System.out.println("Number of card selected on table is: " + cardOnTable.getCardNumber());
 
         if(player.cardSelected.getCardNumber() == cardOnTable.getCardNumber()){
-            //System.out.println("There numbers match!!");
             player.addCardToStash(cardOnTable);
             player.addCardToStash(player.cardSelected);
-            System.out.println("Number of cards in stash: " + player.stash.size());
-            System.out.println("Card on top of stash: " + player.checkTopCardInStash(player.stash).printCard());
             player.removeCardFromHand(player.cardSelected);
             table.removeCardFromTable(cardOnTable);
         }
@@ -215,7 +197,7 @@ public class Main {
         String[] responseInArray = new String[0];
 
         while (!isValidIndex){
-            System.out.println("Select the position of the cards you want to add together (1-" + table.getCardsOnTable().size() + "):");
+            System.out.println("Select the position of the cards you want to add together (1-" + table.getCardsOnTable().size() + "): ");
             System.out.print("Leave a space between cards. EX: 1 3 5 : ");
             String responseString = input.nextLine();
             responseInArray = responseString.split(" ");
@@ -242,7 +224,6 @@ public class Main {
         }
 
         if(sumOfCards == player.cardSelected.getCardNumber() || player.cardSelected.getCardNumber() == 1 && sumOfCards == 14){
-            //System.out.println("Cards selected from table sum up to your card!!!! ");
             Card[] cardsSelectedOnTable = getCardsOnTableByIndexes(responseInArray,table);
             for (Card card : cardsSelectedOnTable){
                 player.addCardToStash(card);
@@ -250,11 +231,9 @@ public class Main {
             }
             player.addCardToStash(player.cardSelected);
             player.removeCardFromHand(player.cardSelected);
-            System.out.println("Number of cards in stash: " + player.stash.size());
-            System.out.println("Card on top of stash: " + player.checkTopCardInStash(player.stash).printCard());
         }
         else{
-            System.out.println("Cards selected from table dint match up to your card!!! :(");
+            System.out.println("Cards selected from table didn't match up to your card!!! :(");
             askPlayerToMakeChoice(table,player,input);
         }
     }
@@ -269,12 +248,9 @@ public class Main {
         Card[] cardsSelected = getCardsOnTableByIndexes(numOfCardsToAdd, table);
 
         int sumOfCards = 0;
-        System.out.print("Card from table selected : ");
         for ( Card card : cardsSelected){
-            System.out.print(card.printCard());
             sumOfCards += card.getCardNumber();
         }
-        System.out.println(" = " + sumOfCards);
         return sumOfCards;
 
     }
@@ -283,16 +259,29 @@ public class Main {
         Card[] cardsSelected = new Card[numOfCardsToAdd.length];
         for (int i = 0; i < numOfCardsToAdd.length; i++) {
             // subtract one from index since player pick starting from 1 not 0
-            cardsSelected[i] = table.getCardsOnTable().get(Integer.parseInt(numOfCardsToAdd[i])-1);
+            cardsSelected[i] = table.getCardsOnTable().get(Integer.parseInt(numOfCardsToAdd[i]) - 1);
         }
         return cardsSelected;
     }
 
     public void addDelay(int seconds){
         try {
-            Thread.sleep(((int)seconds*1000));
+            Thread.sleep((seconds * 1000L));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public Player checkWhichPlayerWon(List<Player> playerInGame){
+        Player playerThatOne = new Player();
+        for(Player player : playerInGame){
+            if(playerThatOne == null){
+                playerThatOne = player;
+            }
+            else if(playerThatOne.stash.size() < player.stash.size()){
+                playerThatOne = player;
+            }
+        }
+        return playerThatOne;
     }
 }

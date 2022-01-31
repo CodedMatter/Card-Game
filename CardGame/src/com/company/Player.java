@@ -13,6 +13,10 @@ public class Player {
         playerName = name;
     }
 
+    Player(){
+
+    }
+
     public Card[] getHand() {
         return hand;
     }
@@ -30,7 +34,7 @@ public class Player {
     }
 
     public Card checkTopCardInStash(List<Card> stashToCheck){
-        return stashToCheck.get(stashToCheck.size()-1);
+        return stashToCheck.get(stashToCheck.size() - 1);
     }
 
     public void removeStash(){
@@ -105,11 +109,9 @@ public class Player {
         if(stash.size() > 0){
             System.out.println("Stash: " + checkTopCardInStash(stash).printCard() + "Amount: " + checkHowManyCardsInStash());
         }
-        else System.out.println("");
     }
 
     public void selectCardFromHand(int position){
-        cardSelected = hand[position-1];
-        System.out.println(playerName + " has selected " + cardSelected.printCard() + " from hand");
+        cardSelected = hand[position - 1];
     }
 }

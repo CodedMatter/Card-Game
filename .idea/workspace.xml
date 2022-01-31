@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4615f5c7-7cce-43b3-816c-1d38d7025ab7" name="Changes" comment="Added new comment instruction to hopefully solve the npc card counting problem which I failed to do again. I think I almost have it.">
+    <list default="true" id="4615f5c7-7cce-43b3-816c-1d38d7025ab7" name="Changes" comment="NPC are able to add card from the table and see if a card on there hand match">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/NPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CardGame/src/com/company/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/CardGame/src/com/company/Table.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TestFolder/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestFolder/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestFolder/com/company/NPC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestFolder/com/company/NPC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TestFolder/com/company/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TestFolder/com/company/Player.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +113,7 @@
       <workItem from="1643295199871" duration="1981000" />
       <workItem from="1643304034557" duration="301000" />
       <workItem from="1643304357467" duration="8282000" />
-      <workItem from="1643586055677" duration="13160000" />
+      <workItem from="1643586055677" duration="15987000" />
     </task>
     <task id="LOCAL-00001" summary="Added try-catch for inputs">
       <created>1643093777317</created>
@@ -152,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643351491191</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="NPC are able to add card from the table and see if a card on there hand match">
+      <created>1643605197394</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1643605197394</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +201,8 @@
     <MESSAGE value="Added method that allows for a delay in program" />
     <MESSAGE value="Failed at adding a way for npc to add up card on the table to see if they match a card in there hand" />
     <MESSAGE value="Added new comment instruction to hopefully solve the npc card counting problem which I failed to do again. I think I almost have it." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new comment instruction to hopefully solve the npc card counting problem which I failed to do again. I think I almost have it." />
+    <MESSAGE value="NPC are able to add card from the table and see if a card on there hand match" />
+    <option name="LAST_COMMIT_MESSAGE" value="NPC are able to add card from the table and see if a card on there hand match" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

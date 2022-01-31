@@ -20,14 +20,6 @@ public class Card {
         return num;
     }
 
-    public CardType getCardType(){
-        return type;
-    }
-
-//    public String cardInfo(){
-//        return "Card Num: " + num + ", Card Type: " + type;
-//    }
-
     public String printCard(){
         String cardNumToPrint;
         if(num == 1){

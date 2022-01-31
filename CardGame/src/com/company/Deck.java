@@ -29,7 +29,6 @@ public class Deck {
             deck.remove(card);
             shuffledDeck.add(card);
         }
-
         deck.addAll(shuffledDeck);
     }
 

@@ -24,8 +24,6 @@ public class Table {
         }
         else{
             cardsOnTable.remove(indexOfCardToRemove);
-            //cardsOnTable.set(indexOfCardToRemove, null);
-            System.out.println("Card remove from table successfully");
         }
     }
 
@@ -40,7 +38,6 @@ public class Table {
             if(card != null){
                 System.out.print(card.printCard());
             }
-
         }
         System.out.println();
         System.out.println("_______________________________________________________________________");
