@@ -106,9 +106,6 @@ public class Player {
         System.out.println();
         System.out.println("_______________________________________");
         System.out.println();
-        if(stash.size() > 0){
-            System.out.println("Stash: " + checkTopCardInStash(stash).printCard() + "Amount: " + checkHowManyCardsInStash());
-        }
     }
 
     public void selectCardFromHand(int position){

@@ -61,12 +61,17 @@ public class NPC extends Player{
             if (cardsThatSumUp.size() != 0){
                 System.out.println(getName() + " Found cards that add up to: " + cardSelected.printCard());
                 program.addDelay(2);
-                addCardToStash(cardSelected);
+
+                System.out.print("NPC adding to stash: " + cardSelected.printCard() + " + ");
+
                 for(Card card : cardsThatSumUp){
+                    addCardToStash(card);
+                    System.out.print(card.printCard() + " + ");
                     table.removeCardFromTable(card);
                 }
                 addCardToStash(cardSelected);
                 removeCardFromHand(cardSelected);
+
             }
             else{
                 //else put card down

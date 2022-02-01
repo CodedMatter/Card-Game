@@ -63,10 +63,10 @@ public class Main {
                     ((NPC) playerOrder.get(indexOfCurrentPlayerTurn)).npcTurn(program,table);
                 }
                 else{
-                    program.printOutGame(table,player);
+                    program.printOutGame(table,player,playerOrder);
 
                     // ask player to choose what they want to do
-                    program.askPlayerToMakeChoice(table,player,input);
+                    program.askPlayerToMakeChoice(table,player,input, playerOrder);
                 }
                 indexOfCurrentPlayerTurn++;
             }
@@ -74,7 +74,7 @@ public class Main {
             turn++;
 
             if(turn > 4){
-                if(deck.amountOfCardsInDeck() == 0){
+                if(deck.amountOfCardsInDeck() == 0) {
                     isGameEnded = true;
                     System.out.println("Game has ended!!");
                     System.out.println("The Player that won was " + program.checkWhichPlayerWon(playerOrder).getName());
@@ -92,18 +92,33 @@ public class Main {
         }
     }
 
-    public void printOutGame(Table table, Player player){
+    public void printOutGame(Table table, Player player, List<Player> playerOrder){
+
         table.printTable();
         player.printHand();
+
+        System.out.println();
+        System.out.println("Stash");
+        System.out.println("_______________________________________________________________________");
+        for(Player p : playerOrder){
+            if(p.stash.size() != 0){
+                System.out.print(p.getName());
+                System.out.print(p.checkTopCardInStash(p.stash).printCard() +
+                        "Amount " + p.checkHowManyCardsInStash() + "          ");
+            }
+        }
+        System.out.println();
+        System.out.println("_______________________________________________________________________");
     }
 
-    public void askPlayerToMakeChoice(Table table, Player player, Scanner input ){
+    public void askPlayerToMakeChoice(Table table, Player player, Scanner input, List<Player> playerOrder){
 
         // ask player what action they want to take
         System.out.println("Do you want to " +
                 "\n(1) select a single card " +
                 "\n(2) add cards together" +
-                "\n(3) put a card on table");
+                "\n(3) put a card on table" +
+                "\n(4) steal a player's stash");
 
         int response;
         try {
@@ -112,10 +127,27 @@ public class Main {
             response = -1;
         }
 
-        if(response != 1 && response != 2 && response != 3){
+        if(response != 1 && response != 2 && response != 3 && response !=4){
             System.out.println("You need to input a valid choice. ");
-            askPlayerToMakeChoice(table,player,input);
+            askPlayerToMakeChoice(table,player,input, playerOrder);
             return;
+        }else{
+            if(response == 4){
+                List<Player> playersWithStash = new ArrayList<>();
+                for (Player p : playerOrder){
+                    if(p != playerOrder.get(0)){
+                        if(p.stash.size() != 0){
+                            playersWithStash.add(p);
+                        }
+                    }
+                }
+                if(playersWithStash.size() == 0){
+                    System.out.println("No one has a stash to steal yet");
+                    System.out.println("Pick a different option");
+                    askPlayerToMakeChoice(table,playerOrder.get(0),input,playerOrder);
+                    return;
+                }
+            }
         }
 
         boolean isIndexValid = false;
@@ -142,21 +174,23 @@ public class Main {
 
         switch (response){
             case 1:
-                choiceOne(response,table,player,input);
+                choiceOne(response,table,player,input,playerOrder);
                 break;
             case 2:
-                choiceTwo(table,player,input);
+                choiceTwo(table,player,input,playerOrder);
                 break;
             case 3:
                 choiceThree(table,player);
                 break;
+            case 4:
+                choiceFour(table,playerOrder,input);
             default:
                 System.out.println("Wrong Choice Made It Through!!!! Check Code :O :( ");
                 break;
         }
     }
 
-    public void choiceOne(int response, Table table, Player player, Scanner input) {
+    public void choiceOne(int response, Table table, Player player, Scanner input , List<Player> playerOrder) {
         boolean isIndexValid = false;
         while (!isIndexValid){
             System.out.print("Select the card from the table (1-" + table.getCardsOnTable().size() + ") ");
@@ -187,11 +221,11 @@ public class Main {
         else{
             System.out.println("Those cards don't match. Select different options.");
             System.out.println();
-            askPlayerToMakeChoice(table,player,input);
+            askPlayerToMakeChoice(table,player,input, playerOrder);
         }
     }
 
-    public void choiceTwo(Table table,Player player, Scanner input){
+    public void choiceTwo(Table table, Player player, Scanner input, List<Player> playerOrder){
         int sumOfCards = 0;
         boolean isValidIndex = false;
         String[] responseInArray = new String[0];
@@ -234,7 +268,7 @@ public class Main {
         }
         else{
             System.out.println("Cards selected from table didn't match up to your card!!! :(");
-            askPlayerToMakeChoice(table,player,input);
+            askPlayerToMakeChoice(table,player,input, playerOrder);
         }
     }
 
@@ -242,6 +276,81 @@ public class Main {
         System.out.println("Player placed " + player.cardSelected.printCard() + " on table");
         table.addCardToTable(player.cardSelected);
         player.removeCardFromHand(player.cardSelected);
+    }
+
+    public void choiceFour(Table table, List<Player> playerOrder, Scanner input){
+        List<Player> playerWithStashes = new ArrayList<>();
+        // add npcs to the list that have stashes
+        for (Player player : playerOrder){
+            if(player != null){
+                if(player != playerOrder.get(0)){
+                    if(player.checkHowManyCardsInStash() > 0){
+                        playerWithStashes.add(player);
+                    }
+                }
+            }
+        }
+
+        boolean hasCardThatMatchesAStack = false;
+        for (Card card : playerOrder.get(0).getHand()){
+            if(card != null){
+                for (Player player : playerWithStashes){
+                    if(player.checkTopCardInStash(player.stash).getCardNumber() == card.getCardNumber()){
+                        hasCardThatMatchesAStack = true;
+                        break;
+                    }
+                }
+            }
+
+            if(hasCardThatMatchesAStack){
+                break;
+            }
+        }
+
+        if(hasCardThatMatchesAStack){
+            // print out the stashes the player can select
+            int indexOfPlayerWithStash = 0;
+            for (Player player : playerOrder){
+                if(player != playerOrder.get(0)){
+                    System.out.println("(" + ++indexOfPlayerWithStash + ")" +player.getName() +
+                            "'s Stash has " + player.checkHowManyCardsInStash() +
+                            " Cards"+ player.checkTopCardInStash(player.stash).printCard());
+                }
+            }
+        }
+
+
+        boolean isIndexValid = false;
+        int response;
+
+        while (!isIndexValid){
+            System.out.print("Select which Stash to steal (1-" + playerWithStashes.size() + ") ");
+            try {
+                response = Integer.parseInt(input.nextLine().trim());
+            }catch (Exception e){
+                response = 1000;
+            }
+
+            if(response > playerWithStashes.size()){
+                System.out.println("Need to enter a valid card position to continue. ");
+                isIndexValid = false;
+            }
+            else {
+                isIndexValid = true;
+
+            }
+            // check if the card player selected match the the card at the top of npcs stash
+            if(playerOrder.get(response).checkTopCardInStash(playerOrder.get(response).stash).getCardNumber() == playerOrder.get(0).cardSelected.getCardNumber()){
+                playerOrder.get(0).stash.addAll(playerOrder.get(response).stash);
+                playerOrder.get(response).removeStash();
+                playerOrder.get(0).addCardToStash(playerOrder.get(0).cardSelected);
+                playerOrder.get(0).removeCardFromHand(playerOrder.get(0).cardSelected);
+            }else{
+                System.out.println("Card selected doesn't match the card at the top of " + playerOrder.get(response).getName()+ "'s Stash");
+                System.out.println();
+                askPlayerToMakeChoice(table,playerOrder.get(0),input,playerOrder);
+            }
+        }
     }
 
     public int addCardNumbers(String[] numOfCardsToAdd, Table table){

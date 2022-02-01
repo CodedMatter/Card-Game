@@ -32,6 +32,7 @@ public class Table {
     }
 
     public void printTable(){
+        System.out.println();
         System.out.println("Table");
         System.out.println("_______________________________________________________________________");
         for (Card card : cardsOnTable){
