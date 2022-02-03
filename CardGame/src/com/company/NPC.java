@@ -9,20 +9,27 @@ public class NPC extends Player{
         super(name);
     }
 
-    public Card doesCardInHandMatchTable(List<Card> cardsOnTable){
-        for (int i = 0; i < getHand().length; i++) {
-            for (Card card : cardsOnTable){
-                if(getHand()[i] != null){
-                    if(card.getCardNumber() == getHand()[i].getCardNumber()){
-                        return getHand()[i];
-                    }
+    public void npcTurn(Main program,Table table, List<Player> playerList){
+
+        printHand();
+        // check if npc can steal anyone's stash
+        Player playerStashToSteal = doesAnyStackMatchCardInHand(playerList);
+
+        if(playerStashToSteal != null){
+            System.out.println(getName() + " decided to steal " + playerStashToSteal.getName() + "'s stash");
+            for (Card card : getHand()){
+                if(card.getCardNumber() == playerStashToSteal.checkTopCardInStash(playerStashToSteal.stash).getCardNumber()){
+                    cardSelected = card;
+                    break;
                 }
             }
+            stash.addAll(playerStashToSteal.stash);
+            playerStashToSteal.removeStash();
+            stash.add(getCardSelected());
+            removeCardFromHand(getCardSelected());
+            return;
         }
-        return null;
-    }
 
-    public void npcTurn(Main program,Table table){
         cardSelected = null;
         cardSelected = doesCardInHandMatchTable(table.getCardsOnTable());
         if(cardSelected != null){
@@ -43,8 +50,7 @@ public class NPC extends Player{
             removeCardFromHand(cardSelected);
 
             //printHand();
-        }else
-        {
+        }else {
             // try adding cards together
             List<Card> cardsThatSumUp = new ArrayList<>();
             for (Card card : getHand()){
@@ -62,11 +68,8 @@ public class NPC extends Player{
                 System.out.println(getName() + " Found cards that add up to: " + cardSelected.printCard());
                 program.addDelay(2);
 
-                System.out.print("NPC adding to stash: " + cardSelected.printCard() + " + ");
-
                 for(Card card : cardsThatSumUp){
                     addCardToStash(card);
-                    System.out.print(card.printCard() + " + ");
                     table.removeCardFromTable(card);
                 }
                 addCardToStash(cardSelected);
@@ -97,11 +100,55 @@ public class NPC extends Player{
         }
     }
 
+    public Card doesCardInHandMatchTable(List<Card> cardsOnTable){
+        for (int i = 0; i < getHand().length; i++) {
+            for (Card card : cardsOnTable){
+                if(getHand()[i] != null){
+                    if(card.getCardNumber() == getHand()[i].getCardNumber()){
+                        return getHand()[i];
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Player doesAnyStackMatchCardInHand(List<Player> playerList){
+
+        Player playerStashToSteal= null;
+        boolean hasFoundStashToSteal = false;
+        for (Player player : playerList){
+            if(player != this){
+                for (Card card : getHand()){
+                    if(card != null){
+                        if(player.stash.size() != 0){
+                            if(card.getCardNumber() == player.checkTopCardInStash(player.stash).getCardNumber()){
+                                playerStashToSteal = player;
+                                hasFoundStashToSteal = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(hasFoundStashToSteal){
+                    break;
+                }
+            }
+        }
+        if(hasFoundStashToSteal){
+            return playerStashToSteal;
+        }
+        else{
+            return null;
+        }
+    }
+
     public List<Card> checkTableForSumMatches(Table table,Card cardFromHand){
 
         List<Card> tableCardsToLoopThrough = new ArrayList<>();
         List<Card> storedCards = new ArrayList<>();
         List<Card> cardsThatWhereMatch = new ArrayList<>();
+
         int sum = 0;
 
         boolean hasFoundMatch = false;
