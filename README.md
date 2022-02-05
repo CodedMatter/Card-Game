@@ -1,4 +1,4 @@
-# CardGame in Terminal
+# Card Game in Terminal
 Duration: 2 Weeks
 
 ## Description
