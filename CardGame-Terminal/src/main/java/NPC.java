@@ -9,7 +9,7 @@ public class NPC extends Player{
 
     public void npcTurn(Main program,Table table, List<Player> playerList){
 
-        printHand();
+        //printHand();
         // check if npc can steal anyone's stash
         Player playerStashToSteal = doesAnyStackMatchCardInHand(playerList);
 

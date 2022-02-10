@@ -8,13 +8,20 @@ public class Main {
         Main program = new Main();
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to Card Game!");
+        System.out.println("Instructions: ");
+        System.out.println("The Player with the most cards in there Stash wins. To fill up your stash you can either" +
+                "match a card in your hand with one on the table. If they match then you can add it to the your stash." +
+                "You can also add up cards on the table to match a card in your hand and add it to you stash." +
+                "If you have no matching cards then simply place a card from your hand on the table." +
+                "One more thing, if you have a card that matches the top card on someone stash you can steal it." +
+                "Have Fun.");
 
         //Ask how many players
         // for now default to 2
         int numOfPlayers = 2;
 
         // crate player character
-        System.out.print("Enter players name: ");
+        System.out.print("Enter your name: ");
         Player player = new Player(input.nextLine());
 
         // add player and create the necessary npcs to playerOrder
@@ -119,10 +126,10 @@ public class Main {
 
         // ask player what action they want to take
         System.out.println("Do you want to " +
-                "\n(1) select a single card " +
-                "\n(2) add cards together" +
-                "\n(3) put a card on table" +
-                "\n(4) steal a player's stash");
+                "\n(1) Select a card from table and hand to match" +
+                "\n(2) Add cards together from table to match a card from hand  " +
+                "\n(3) Place a card down on the table" +
+                "\n(4) Steal other players stash if card from hand matches");
 
         // take player input and clean it up
         int response;
