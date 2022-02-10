@@ -2,7 +2,6 @@
 Duration: 2 Weeks
 
 ## Description
-Project description
    This is a card game your able to play withing the console/terminal. You vs a NPC will collect and steal cards from each other and the one with the most cards at the end, Win the game.
    Special Notes:
    
